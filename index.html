@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="script.js">
+    <script src="script.js"></script>
     <title>Calculadora</title>
 </head>
 <!--FONDO-->
@@ -15,10 +15,13 @@
     </div>
     <!--CUERPO PRINCIPAL-->
     <div style="margin-top: auto; display: flex; justify-content: center; text-align: center;">
-        <div style="background: linear-gradient(120deg, #422057, #846994); border: 2px; border-radius: 6px; min-width: 500px; padding: 12px;">
+        <div style="background: linear-gradient(120deg, #422057, #846994); border: 2px; border-radius: 50px; min-width: 500px; padding: 12px;">
             <!--RESULTADO-->
-            <div style="border: 6px; background: goldenrod; border-radius: 6px; padding: 1px;">
-                <h1 style="font-family: 'Roboto', sans-serif;">0</h1>
+            <br>
+            <div>
+                <input type="text" style="font-family: 'Roboto', sans-serif; border: 6px; background: goldenrod; 
+                border-radius: 30px; padding: 30px; min-width: 340px; text-align: end; font-size: 30px;" 
+                id="result" name="result" value="0" readonly>
             </div>
             <!--ESPACIADO-->
             <br>
@@ -26,55 +29,60 @@
             <div style="margin-top: 10px;">
                 <div>
                     <!--PRIMERA FILA-->
-                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 6px; 
-                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">C</button>
-                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 6px; 
-                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">()</button>
-                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 6px; 
-                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">%</button>
-                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 6px; 
-                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">/</button>
+                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
+                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;"
+                    name="btnC" id="btnC">C</button>
+                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
+                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;"
+                    name="btnPar" id="btnPar">()</button>
+                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
+                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;"
+                    name="btn%" id="btn%">%</button>
+                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
+                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;"
+                    name="btnDiv" id="btnDiv">/</button>
                 </div>
                 <!--SEGUNDA FILA-->
                 <div style="margin-top: 10px;">
-                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 6px; 
-                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">9</button>
-                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 6px; 
-                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">8</button>
-                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 6px; 
+                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
                     min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">7</button>
-                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 6px; 
+                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
+                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">8</button>
+                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
+                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">9</button>
+                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
                     min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">*</button>
                 </div>
                 <!--TERCERA FILA-->
                 <div style="margin-top: 10px;">
-                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 6px; 
-                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">6</button>
-                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 6px; 
-                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">5</button>
-                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 6px; 
+                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
                     min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">4</button>
-                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 6px; 
-                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">+</button>
+                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
+                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">5</button>
+                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
+                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">6</button>
+                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
+                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;"
+                    onclick="">+</button>
                 </div>
                 <!--CUARTA FILA-->
                 <div style="margin-top: 10px;">
-                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 6px; 
-                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">3</button>
-                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 6px; 
-                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">2</button>
-                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 6px; 
+                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
                     min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">1</button>
-                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 6px; 
+                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
+                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">2</button>
+                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
+                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">3</button>
+                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
                     min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">-</button>
                 </div>
                 <!--QUINTA FILA-->
                 <div style="margin-top: 10px;">
-                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 6px; 
+                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
                     min-height: 100px; min-width: 200px; font-family: 'Roboto', sans-serif; font-size: 20px;">0</button>
-                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 6px; 
+                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
                     min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">.</button>
-                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 6px; 
+                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
                     min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">=</button>
                 </div>
             </div>
@@ -82,5 +90,9 @@
             <br>
         </div>
     </div>
+    <br>
 </body>
+<script>
+    resultado = document.getElementById("result")
+</script>
 </html>
