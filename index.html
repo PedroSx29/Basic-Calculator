@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
     <title>Calculadora</title>
 </head>
 <!--FONDO-->
@@ -31,59 +30,73 @@
                     <!--PRIMERA FILA-->
                     <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
                     min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;"
-                    name="btnC" id="btnC">C</button>
+                    name="btnC" id="btnC" onclick="limpiar()">C</button>
                     <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
                     min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;"
-                    name="btnPar" id="btnPar">()</button>
+                    name="btnPar" id="btnPar" onclick="actualizarParentesis()">()</button>
                     <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
                     min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;"
-                    name="btn%" id="btn%">%</button>
+                    name="btn%" id="btn%" onclick="actualizarOperador('%')">%</button>
                     <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
                     min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;"
-                    name="btnDiv" id="btnDiv">/</button>
+                    name="btnDiv" id="btnDiv" onclick="actualizarOperador('/')">/</button>
                 </div>
                 <!--SEGUNDA FILA-->
                 <div style="margin-top: 10px;">
                     <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
-                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">7</button>
+                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;"
+                    onclick="actualizarNumeros('7')">7</button>
                     <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
-                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">8</button>
+                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;"
+                    onclick="actualizarNumeros('8')">8</button>
                     <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
-                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">9</button>
+                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;"
+                    onclick="actualizarNumeros('9')">9</button>
                     <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
-                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">*</button>
+                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;"
+                    onclick="actualizarOperador('*')">*</button>
                 </div>
                 <!--TERCERA FILA-->
                 <div style="margin-top: 10px;">
                     <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
-                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">4</button>
-                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
-                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">5</button>
-                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
-                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">6</button>
+                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;"
+                    onclick="actualizarNumeros('4')">4</button>
                     <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
                     min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;"
-                    onclick="">+</button>
+                    onclick="actualizarNumeros('5')">5</button>
+                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
+                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;"
+                    onclick="actualizarNumeros('6')">6</button>
+                    <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
+                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;"
+                    onclick="actualizarOperador('+')">+</button>
                 </div>
                 <!--CUARTA FILA-->
                 <div style="margin-top: 10px;">
                     <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
-                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">1</button>
+                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;"
+                    onclick="actualizarNumeros('1')">1</button>
                     <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
-                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">2</button>
+                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;"
+                    onclick="actualizarNumeros('2')">2</button>
                     <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
-                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">3</button>
+                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;"
+                    onclick="actualizarNumeros('3')">3</button>
                     <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
-                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">-</button>
+                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;"
+                    onclick="actualizarOperador('-')">-</button>
                 </div>
                 <!--QUINTA FILA-->
                 <div style="margin-top: 10px;">
                     <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
-                    min-height: 100px; min-width: 200px; font-family: 'Roboto', sans-serif; font-size: 20px;">0</button>
+                    min-height: 100px; min-width: 200px; font-family: 'Roboto', sans-serif; font-size: 20px;"
+                    onclick="actualizarNumeros('0')">0</button>
                     <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
-                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">.</button>
+                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;"
+                    onclick="actualizarNumeros('.')">.</button>
                     <button style="background: linear-gradient(90deg, #877977, #B8ACAB); border-radius: 60px; 
-                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;">=</button>
+                    min-height: 100px; min-width: 100px; font-family: 'Roboto', sans-serif; font-size: 20px;"
+                    onclick="calcular()">=</button>
                 </div>
             </div>
             <!--ESPACIADO-->
@@ -91,8 +104,6 @@
         </div>
     </div>
     <br>
+    <script src="script.js"></script>
 </body>
-<script>
-    resultado = document.getElementById("result")
-</script>
 </html>
