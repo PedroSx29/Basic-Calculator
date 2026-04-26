@@ -68,7 +68,7 @@ function calcular() {
         default:
             return;
     }
-    procesoMostrado += operandoActual + ' = ' + respuesta;
+    procesoMostrado += ' = ' + respuesta;
     actualizarProceso();
     operandoActual = respuesta;
     operacionActual = undefined;
