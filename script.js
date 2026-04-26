@@ -1,18 +1,26 @@
 const resultado = document.getElementById("result")
+const proceso = document.getElementById("proceso")
 
 let operacionActual = undefined
 let operandoActual = ''
 let operandoAnterior = ''
+let procesoMostrado = ''
 
 function actualizarPantalla() {
     resultado.value = operandoActual;
+}
+
+function actualizarProceso() {
+    proceso.value = procesoMostrado;
 }
 
 function actualizarNumeros(numero) {
     if (numero === '.' && operandoActual.includes('.')) return;
 
     operandoActual = operandoActual.toString() + numero.toString();
+    procesoMostrado += numero.toString();
     actualizarPantalla();
+    actualizarProceso();
 }
 
 function actualizarOperador(operador) {
@@ -25,6 +33,8 @@ function actualizarOperador(operador) {
     operacionActual = operador;
     operandoAnterior = operandoActual;
     operandoActual = '';
+    procesoMostrado += ' ' + operador + ' ';
+    actualizarProceso();
 }
 
 function calcular() {
@@ -58,6 +68,8 @@ function calcular() {
         default:
             return;
     }
+    procesoMostrado += operandoActual + ' = ' + respuesta;
+    actualizarProceso();
     operandoActual = respuesta;
     operacionActual = undefined;
     operandoAnterior = '';
@@ -68,19 +80,26 @@ function limpiar() {
     operacionActual = undefined
     operandoActual = ''
     operandoAnterior = ''
+    procesoMostrado = ''
     resultado.value = '0'
+    proceso.value = '0'
 }
 
 function actualizarParentesis() {
-    let parentesis = '';
-
-    if (parentesis === '') {
-        resultado.value += '(';
+    // Contar paréntesis abiertos y cerrados en procesoMostrado
+    const parenAbiertos = (procesoMostrado.match(/\(/g) || []).length;
+    const parenCerrados = (procesoMostrado.match(/\)/g) || []).length;
+    
+    // Si hay más paréntesis cerrados que abiertos, o están balanceados, agregar apertura
+    if (parenCerrados >= parenAbiertos) {
+        operandoActual = operandoActual.toString() + '(';
+        procesoMostrado += '(';
+    } else {
+        // Si hay paréntesis abiertos sin cerrar, agregar cierre
+        operandoActual = operandoActual.toString() + ')';
+        procesoMostrado += ')';
     }
-
-    if (parentesis === '(' && isNaN(operandoActual)) return;
-
-    if (parentesis === '(' && !isNaN(operandoActual)) {
-        resultado.value += ')';
-    }
+    
+    actualizarPantalla();
+    actualizarProceso();
 }
