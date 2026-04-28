@@ -5,6 +5,7 @@ let operacionActual = undefined
 let operandoActual = ''
 let operandoAnterior = ''
 let procesoMostrado = ''
+let estadoCalculo = false
 
 function actualizarPantalla() {
     resultado.value = operandoActual;
@@ -17,6 +18,11 @@ function actualizarProceso() {
 function actualizarNumeros(numero) {
     if (numero === '.' && operandoActual.includes('.')) return;
 
+    if (estadoCalculo === true) {
+        procesoMostrado = '';
+        estadoCalculo = false;
+    }
+
     operandoActual = operandoActual.toString() + numero.toString();
     procesoMostrado += numero.toString();
     actualizarPantalla();
@@ -26,54 +32,72 @@ function actualizarNumeros(numero) {
 function actualizarOperador(operador) {
     if (operandoActual === '') return;
 
-    if (operandoAnterior !== '') {
-        calcular();
+    if (estadoCalculo === true) {
+        procesoMostrado = operandoActual.toString() + ' ' + operador + ' ';
+        estadoCalculo = false;
+        operandoAnterior = operandoActual;
+        operandoActual = '';
+    } else {
+        operacionActual = operador;
+        operandoAnterior = operandoActual;
+        operandoActual = '';
+        procesoMostrado += ' ' + operador + ' ';
     }
 
-    operacionActual = operador;
-    operandoAnterior = operandoActual;
-    operandoActual = '';
-    procesoMostrado += ' ' + operador + ' ';
+    actualizarProceso();
+}
+
+function borrarCaracter() {
+    if (operandoActual !== '') {
+        operandoActual = operandoActual.toString().slice(0, -1);
+    }
+    
+    if (procesoMostrado !== '') {
+        procesoMostrado = procesoMostrado.slice(0, -1);
+    }
+    
+    if (procesoMostrado === '' && operandoActual === ''){
+        limpiar();
+        return;
+    }
+
+    try {
+        if (estadoCalculo === true) {
+            limpiar();
+            return;
+        }
+    } catch (error) {
+        alert('Se ha producido un error en el sistema')
+    }
+
+    actualizarPantalla();
     actualizarProceso();
 }
 
 function calcular() {
-    let respuesta;
-    const anterior = parseFloat(operandoAnterior);
-    const actual = parseFloat(operandoActual);
-
-    if (isNaN(anterior) || isNaN(actual)) return;
-
-    switch (operacionActual) {
-        case "+":
-            respuesta = anterior + actual;
-            break;
-        case "-":
-            respuesta = anterior - actual;
-            break;
-        case "/":
-            if (actual === 0){
-                alert("No se puede dividir entre cero.");
-                limpiar();
-                return;
-            };
-            respuesta = anterior / actual;
-            break;
-        case "*":
-            respuesta = anterior * actual;
-            break;
-        case "%":
-            respuesta = anterior % actual;
-            break;
-        default:
+    let expresion = procesoMostrado.trim();
+    
+    if (expresion === '' || expresion === '0') return;
+    
+    try {
+        let respuesta = eval(expresion);
+        
+        if (isNaN(respuesta)) {
+            alert("Operación inválida");
             return;
+        }
+        
+        procesoMostrado += ' = ' + respuesta;
+        actualizarProceso();
+        
+        estadoCalculo = true;
+        operandoActual = respuesta;
+        operacionActual = undefined;
+        operandoAnterior = '';
+        actualizarPantalla();
+    } catch (error) {
+        alert("Operación inválida");
     }
-    procesoMostrado += ' = ' + respuesta;
-    actualizarProceso();
-    operandoActual = respuesta;
-    operacionActual = undefined;
-    operandoAnterior = '';
-    actualizarPantalla();
 }
 
 function limpiar() {
@@ -81,21 +105,19 @@ function limpiar() {
     operandoActual = ''
     operandoAnterior = ''
     procesoMostrado = ''
+    estadoCalculo = false
     resultado.value = '0'
     proceso.value = '0'
 }
 
 function actualizarParentesis() {
-    // Contar paréntesis abiertos y cerrados en procesoMostrado
     const parenAbiertos = (procesoMostrado.match(/\(/g) || []).length;
     const parenCerrados = (procesoMostrado.match(/\)/g) || []).length;
     
-    // Si hay más paréntesis cerrados que abiertos, o están balanceados, agregar apertura
     if (parenCerrados >= parenAbiertos) {
         operandoActual = operandoActual.toString() + '(';
         procesoMostrado += '(';
     } else {
-        // Si hay paréntesis abiertos sin cerrar, agregar cierre
         operandoActual = operandoActual.toString() + ')';
         procesoMostrado += ')';
     }
